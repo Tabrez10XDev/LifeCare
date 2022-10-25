@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="64dp"
+    android:clipToPadding="false"
+    android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.Home">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"
+        android:layout_height="match_parent">
+
+
 
 
     <androidx.cardview.widget.CardView
@@ -58,24 +70,298 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="@color/black"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/open_sans_semibold"
         app:layout_constraintTop_toBottomOf="@id/cvOuter"
         app:layout_constraintStart_toStartOf="@id/tvName"
         android:text="Upcoming Appointments"/>
 
 
+        <ImageView
+            android:id="@+id/ivAppointments"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvUpcoming"
+            app:layout_constraintBottom_toBottomOf="@id/tvUpcoming"/>
+
+        <TextView
+            android:id="@+id/tvTotalAppointments"
+            app:layout_constraintStart_toStartOf="@id/ivAppointments"
+            app:layout_constraintEnd_toEndOf="@id/ivAppointments"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/ivAppointments"
+            app:layout_constraintBottom_toBottomOf="@id/ivAppointments"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:fontFamily="@font/open_sans"
+            android:textColor="#1CA3A4"/>
+
+
     <include
+        android:id="@+id/cvUpcoming"
         app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginTop="8dp"
         layout="@layout/item_upcoming_card"/>
 
+    <EditText
+        android:id="@+id/etSearch"
+        style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Search Category"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="6dp"
+        android:inputType="textAutoCorrect"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvUpcoming"
+        android:background="@drawable/search_bg"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginVertical="8dp"
+        android:textColorHint="#AFAFAF"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/open_sans_semibold"
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Category"/>
+
+
+<HorizontalScrollView
+    android:clipToPadding="false"
+    android:paddingEnd="32dp"
+    android:id="@+id/svHome"
+    android:layout_marginVertical="16dp"
+    android:orientation="horizontal"
+    app:layout_constraintTop_toBottomOf="@id/tvCategory"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_width="wrap_content"
+    android:layout_height="100dp">
+
+    <LinearLayout
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/Gynecology"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_gravity="center"
+                android:layout_height="60dp"
+                android:background="@drawable/gynocology"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Gynecology"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Dermatology"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/dermatology"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Dermatology"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/open_sans"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Physician"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/physician"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Physician"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/open_sans"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Sexology"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/sexology"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Sexology"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Psychiatry"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/psychiatry"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Psychiatry"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Stomach"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/stomach"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Stomach"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Pediatrics"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/pediatrics"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Pediatrics"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/ivDiagnosis"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:translationZ="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/svHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/ai_diagnosis_4x"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            app:layout_constraintTop_toBottomOf="@id/ivDiagnosis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="Test now"
+            android:elevation="16dp"
+            android:paddingHorizontal="32dp"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg_white"
+            android:layout_width="wrap_content"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@id/ivDiagnosis" />
 
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
