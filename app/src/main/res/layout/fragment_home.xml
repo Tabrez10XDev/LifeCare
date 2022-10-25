@@ -149,6 +149,7 @@
     android:id="@+id/svHome"
     android:layout_marginVertical="16dp"
     android:orientation="horizontal"
+    android:scrollbars="none"
     app:layout_constraintTop_toBottomOf="@id/tvCategory"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -156,6 +157,7 @@
     android:layout_height="100dp">
 
     <LinearLayout
+        android:id="@+id/trial"
         android:layout_marginHorizontal="16dp"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
