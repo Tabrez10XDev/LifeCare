@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home2"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        app:cnb_iconColor="#22ABA4"/>
+    <item
+        android:id="@+id/history2"
+        android:icon="@drawable/ic_history"
+        android:title="History"
+        app:cnb_iconColor="#22ABA4"/>
+    <item
+        android:id="@+id/profile2"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"
+        app:cnb_iconColor="#22ABA4" />
+
+</menu>

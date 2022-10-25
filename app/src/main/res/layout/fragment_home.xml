@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.Home">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvOuter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="70dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_height="70dp"
+        app:cardCornerRadius="250dp"
+        app:cardElevation="240dp"
+        android:outlineSpotShadowColor="#26B1A3"
+        android:outlineAmbientShadowColor="#26B1A3"
+        app:cardBackgroundColor="@color/white">
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="250dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/ivPerson"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/default_profile"
+                android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Welcome"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@id/cvOuter"
+        app:layout_constraintBottom_toBottomOf="@id/cvOuter"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tvUpcoming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/open_sans_semibold"
+        app:layout_constraintTop_toBottomOf="@id/cvOuter"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        android:text="Upcoming Appointments"/>
+
+
+    <include
+        app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        layout="@layout/item_upcoming_card"/>
+
+
+    
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
