@@ -64,15 +64,15 @@
 
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/editTextMail"
             style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/enter_mobile_number"
+            android:hint="Enter EMail-id"
             android:drawableStart="@drawable/call"
             android:drawablePadding="6dp"
-            android:inputType="phone"
+            android:inputType="textWebEmailAddress"
             android:background="@drawable/input_bg"
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="8dp"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/enter_password"
-            android:drawableStart="@drawable/call"
+            android:drawableStart="@drawable/key"
             android:drawablePadding="6dp"
             android:inputType="textPassword"
             android:background="@drawable/input_bg"

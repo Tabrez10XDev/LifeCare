@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import `in`.lj.lifecare.R
 import `in`.lj.lifecare.doctorsCard
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_doctors_list.*
 
 
@@ -24,8 +25,13 @@ class DoctorsList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         btnBack.setOnClickListener {
-            findNavController().popBackStack()
+         //   findNavController().popBackStack()
+            val doctorDetails = DoctorDetails()
+
+            doctorDetails.show(requireActivity().supportFragmentManager, DoctorDetails.TAG)
+
         }
         recyclerView.withModels {
             doctorsCard {

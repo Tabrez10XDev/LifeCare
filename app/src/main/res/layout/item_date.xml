@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#ECF4F4"
+        android:elevation="0dp"
+        android:paddingTop="4dp"
+        android:layout_height="60dp">
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:paddingTop="4dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#5F5F5F"
+                android:textSize="16dp"
+                android:text="Sat"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/open_sans" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:text="12"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/open_sans_semibold" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
