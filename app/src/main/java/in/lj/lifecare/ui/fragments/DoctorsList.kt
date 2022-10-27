@@ -19,23 +19,28 @@ class DoctorsList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_doctors_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnBack.setOnClickListener {
-         //   findNavController().popBackStack()
-            val doctorDetails = DoctorDetails()
+        var args: DoctorsListArgs = DoctorsListArgs.fromBundle(this.requireArguments())
+        var item = args.category
+        ivDept.setImageResource(item.img)
+        tvDept.text = item.name
 
-            doctorDetails.show(requireActivity().supportFragmentManager, DoctorDetails.TAG)
+        btnBack.setOnClickListener {
+            findNavController().popBackStack()
 
         }
         recyclerView.withModels {
             doctorsCard {
                 id(1)
+                onClickContent{ _ ->
+                    val doctorDetails = DoctorDetails()
+                    doctorDetails.show(requireActivity().supportFragmentManager, DoctorDetails.TAG)
+                }
             }
             doctorsCard {
                 id(2)

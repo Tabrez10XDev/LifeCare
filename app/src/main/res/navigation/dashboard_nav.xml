@@ -28,5 +28,9 @@
         android:id="@+id/doctorsList"
         android:name="in.lj.lifecare.ui.fragments.DoctorsList"
         android:label="fragment_doctors_list"
-        tools:layout="@layout/fragment_doctors_list" />
+        tools:layout="@layout/fragment_doctors_list" >
+        <argument
+            android:name="Category"
+            app:argType="in.lj.lifecare.data.Dept" />
+    </fragment>
 </navigation>

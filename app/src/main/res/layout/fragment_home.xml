@@ -143,198 +143,19 @@
         android:text="Category"/>
 
 
-<HorizontalScrollView
+<com.airbnb.epoxy.EpoxyRecyclerView
     android:clipToPadding="false"
     android:paddingEnd="32dp"
-    android:id="@+id/svHome"
+    android:paddingStart="8dp"
+    android:id="@+id/rvHome"
     android:layout_marginVertical="16dp"
-    android:orientation="horizontal"
-    android:scrollbars="none"
+    android:overScrollMode="never"
     app:layout_constraintTop_toBottomOf="@id/tvCategory"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    android:layout_width="wrap_content"
-    android:layout_height="100dp">
-
-    <LinearLayout
-        android:id="@+id/trial"
-        android:layout_marginHorizontal="16dp"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-
-        <LinearLayout
-            android:id="@+id/Gynecology"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_gravity="center"
-                android:layout_height="60dp"
-                android:background="@drawable/gynocology"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Gynecology"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:fontFamily="@font/open_sans"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Dermatology"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/dermatology"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Dermatology"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:fontFamily="@font/open_sans"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Physician"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/physician"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Physician"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:fontFamily="@font/open_sans"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Sexology"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/sexology"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Sexology"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:fontFamily="@font/open_sans"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Psychiatry"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/psychiatry"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Psychiatry"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:fontFamily="@font/open_sans"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Stomach"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/stomach"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Stomach"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:fontFamily="@font/open_sans"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Pediatrics"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/pediatrics"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Pediatrics"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:fontFamily="@font/open_sans"/>
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-</HorizontalScrollView>
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <ImageView
         android:id="@+id/ivDiagnosis"
@@ -342,7 +163,7 @@
         android:layout_margin="16dp"
         android:translationZ="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/svHome"
+        app:layout_constraintTop_toBottomOf="@id/rvHome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/ai_diagnosis_4x"/>
