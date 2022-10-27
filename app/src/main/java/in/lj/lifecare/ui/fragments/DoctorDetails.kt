@@ -2,6 +2,7 @@ package `in`.lj.lifecare.ui.fragments
 
 import `in`.lj.lifecare.DateBindingModel_
 import `in`.lj.lifecare.R
+import `in`.lj.lifecare.data.Doctor
 import `in`.lj.lifecare.databinding.FragmentDoctorDetailsBinding
 import `in`.lj.lifecare.helper.BaseBottomSheet
 import `in`.lj.lifecare.helper.BottomSheetLevelInterface
@@ -27,7 +28,9 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-class DoctorDetails
+class DoctorDetails(
+    doctor: Doctor
+)
     : BaseBottomSheet<FragmentDoctorDetailsBinding>(R.layout.fragment_doctor_details),
     BottomSheetLevelInterface {
 

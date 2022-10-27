@@ -28,6 +28,7 @@ class Signup : Fragment() {
     private var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
+
     override fun onStart() {
         super.onStart()
         checkLoggedInState()
@@ -47,6 +48,7 @@ class Signup : Fragment() {
             hideKeyboard()
             registerUser()
         }
+        auth.currentUser
         tvLogin.setOnClickListener {
             findNavController().popBackStack()
         }

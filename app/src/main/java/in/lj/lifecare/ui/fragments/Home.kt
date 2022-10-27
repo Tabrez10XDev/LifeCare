@@ -8,15 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import `in`.lj.lifecare.R
+import `in`.lj.lifecare.data.User
 import `in`.lj.lifecare.databinding.ItemDeptBinding
 import `in`.lj.lifecare.helper.Constants.DEPARTMENTS
 import androidx.navigation.fragment.findNavController
 import com.airbnb.epoxy.CarouselModel_
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class Home : Fragment() {
 
+    private lateinit var auth: FirebaseAuth
+    private var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +32,9 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        auth.uid?.let { getUser(it) }
         rvHome.withModels {
-
             val deptModels = mutableListOf<DeptBindingModel_>()
             DEPARTMENTS.forEachIndexed { index, item ->
                 deptModels.add(
@@ -52,6 +58,17 @@ class Home : Fragment() {
                 .addTo(this);
         }
 
+    }
+
+
+    private fun getUser(uid: String){
+        var user: User ?= null
+        fireStore.collection("users").document(uid).get()
+            .addOnSuccessListener {
+                user = it.toObject(User::class.java)
+                tvName.text = "Welcome, ${user?.name}"
+
+            }
     }
 
 
