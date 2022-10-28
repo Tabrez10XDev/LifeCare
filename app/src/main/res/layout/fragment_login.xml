@@ -4,27 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/landing_bg"
+    android:background="@drawable/landing_bg"
     tools:context=".ui.fragments.Login">
 
     <ImageView
         android:id="@+id/ivEllipse"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/guidelineLogin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/landing_ellipse"/>
 
-    <ImageView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLogin"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/splash_screen"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ivEllipse"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/ivEllipse"
-        android:layout_marginVertical="60dp"
-        app:layout_constraintBottom_toBottomOf="@id/ivEllipse"/>
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/tvText"
@@ -40,14 +48,14 @@
         app:layout_constraintTop_toBottomOf="@id/ivEllipse" />
 
     <LinearLayout
+        android:paddingVertical="24dp"
+        android:paddingHorizontal="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="24dp"
         android:background="@drawable/curved_white_bg"
         android:elevation="16dp"
         android:orientation="vertical"
-        android:padding="12dp"
-        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
-            android:text="@string/mobile_number"
+            android:text="Email id"
             android:textColor="@color/black" />
 
 
@@ -70,7 +78,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter EMail-id"
-            android:drawableStart="@drawable/call"
+            android:padding="4dp"
+            android:drawableStart="@drawable/ic_mail"
             android:drawablePadding="6dp"
             android:inputType="textWebEmailAddress"
             android:background="@drawable/input_bg"
@@ -83,7 +92,7 @@
 
 
         <TextView
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
@@ -95,10 +104,11 @@
             android:id="@+id/editTextPassword"
             style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:ems="10"
+            android:padding="4dp"
             android:hint="@string/enter_password"
-            android:drawableStart="@drawable/key"
+            android:drawableStart="@drawable/ic_key"
             android:drawablePadding="6dp"
             android:inputType="textPassword"
             android:background="@drawable/input_bg"
@@ -110,7 +120,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:layout_marginHorizontal="36dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,7 +131,7 @@
 
 
         <LinearLayout
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

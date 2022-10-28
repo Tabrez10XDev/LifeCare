@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home2_to_doctorsList"
             app:destination="@id/doctorsList" />
+        <action
+            android:id="@+id/action_home2_to_aiDiagnosis"
+            app:destination="@id/aiDiagnosis" />
     </fragment>
     <fragment
         android:id="@+id/history2"
@@ -33,4 +36,9 @@
             android:name="Category"
             app:argType="in.lj.lifecare.data.Dept" />
     </fragment>
+    <fragment
+        android:id="@+id/aiDiagnosis"
+        android:name="in.lj.lifecare.ui.fragments.AiDiagnosis"
+        android:label="fragment_ai_diagnosis"
+        tools:layout="@layout/fragment_ai_diagnosis" />
 </navigation>

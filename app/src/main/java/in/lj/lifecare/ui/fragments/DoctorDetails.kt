@@ -9,30 +9,29 @@ import `in`.lj.lifecare.helper.BottomSheetLevelInterface
 import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.airbnb.epoxy.CarouselModel_
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_doctor_details.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DoctorDetails(
-    doctor: Doctor
+    val doctor: Doctor
 )
     : BaseBottomSheet<FragmentDoctorDetailsBinding>(R.layout.fragment_doctor_details),
     BottomSheetLevelInterface {
+
+    var selected: Int ?= null
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -47,7 +46,7 @@ class DoctorDetails(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val imgUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/80.2602,13.0973,16,0,0/400x400?access_token=pk.eyJ1IjoibG93anVua2llIiwiYSI6ImNsMmhlajNuZDBjY3gzY256eGt0ZGpncTIifQ.wPCLsXXPdlP2dY365C-x7A"
+        val imgUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${doctor.geoTag[0]},${doctor.geoTag[1]},16,0,0/400x400?access_token=pk.eyJ1IjoibG93anVua2llIiwiYSI6ImNsMmhlajNuZDBjY3gzY256eGt0ZGpncTIifQ.wPCLsXXPdlP2dY365C-x7A"
 
         Glide
             .with(requireContext())
@@ -57,16 +56,40 @@ class DoctorDetails(
         btnDrop.setOnClickListener {
             dialog?.dismiss()
         }
+        btnBook.setOnClickListener {
+            val confirmationDialog = ConfirmationDialog()
+            confirmationDialog.show(requireActivity().supportFragmentManager,ConfirmationDialog.TAG)
+        }
 
+        tvDoctorName.text = "Dr. " + doctor.name
+        tvDoctorDept.text = doctor.specialization
+        tvVisitingHours.text = doctor.visitingHours
+        tvExperience.text = doctor.experience + " Years"
+        tvConsultations.text = "${doctor.count}+"
+
+        rvDetailsController()
+
+    }
+
+    private fun rvDetailsController(){
+        val lis = getNextWeek()
         binding.rvDetails.withModels {
-            val lis = listOf<Int>(1,2,3,4,5,6,7,8,9,0)
+
             val dateModels = mutableListOf<DateBindingModel_>()
             lis.forEachIndexed { index, i ->
+                val dd = i.split(" ")
+                val colour = if(selected==index) R.color.date_selected else R.color.date_unselected
                 dateModels.add(
                     DateBindingModel_()
                         .id(index)
+                        .day(dd[0].substring(0,3))
+                        .date(dd[1].substring(0,2))
+                        .onClickContent { _ ->
+                            selected = index
+                            this.requestModelBuild()
+                        }
+                        .cardColour(colour)
                 )
-
             }
 
             CarouselModel_()
@@ -74,30 +97,21 @@ class DoctorDetails(
                 .models(dateModels)
                 .addTo(this);
         }
-
-
-
-
     }
 
-
-    fun getBitmapFromURL(src: String?): Bitmap? {
-        return try {
-            Log.e("src", src!!)
-            val url = URL(src)
-            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-            connection.setDoInput(true)
-            connection.connect()
-            val input: InputStream = connection.getInputStream()
-            val myBitmap = BitmapFactory.decodeStream(input)
-            Log.e("Bitmap", "returned")
-            myBitmap
-        } catch (e: IOException) {
-            e.printStackTrace()
-            Log.e("Exception", e.localizedMessage)
-            null
+    private fun getNextWeek(): MutableList<String> {
+        val lis = mutableListOf<String>()
+        val sdf = SimpleDateFormat("EEEE dd-MMM-yyyy")
+        for (i in 0..6) {
+            val calendar: Calendar = GregorianCalendar()
+            calendar.add(Calendar.DATE, i)
+            val day: String = sdf.format(calendar.time)
+            lis.add(day)
         }
+        return lis
     }
+
+
 
     companion object {
         const val TAG = "DoctorDetails"

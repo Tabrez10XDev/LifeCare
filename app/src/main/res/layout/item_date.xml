@@ -3,16 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="cardColour"
+            type="Integer" />
+        <variable
+            name="date"
+            type="String" />
+        <variable
+            name="day"
+            type="String" />
+        <variable
+            name="onClickContent"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="#ECF4F4"
+        android:onClick="@{onClickContent}"
+        app:cardBackgroundColor="@{ContextCompat.getColor(context, cardColour)}"
         android:elevation="0dp"
         android:paddingTop="4dp"
-        android:layout_height="match_parent">
+        android:layout_height="60dp">
 
         <LinearLayout
             android:layout_gravity="center_vertical"
@@ -27,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#5F5F5F"
                 android:textSize="16dp"
-                android:text="Sat"
+                android:text="@{day}"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/open_sans" />
 
@@ -37,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:text="12"
+                android:text="@{date}"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/open_sans_semibold" />
 
