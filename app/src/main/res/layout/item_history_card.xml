@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="txtColour"
+            type="Integer" />
+        <variable
+            name="name"
+            type="String" />
+        <variable
+            name="dept"
+            type="String" />
+        <variable
+            name="status"
+            type="String" />
+        <variable
+            name="date"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,13 +76,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@id/tvName"
+                    android:id="@+id/tvHistoryName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-8dp"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:text="Doctor"
+                    android:text="@{name}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@id/cvDoctorImage"
@@ -80,62 +94,64 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
-                    android:text="Speech Specialist"
+                    android:text="@{dept}"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tvName"
-                    app:layout_constraintTop_toBottomOf="@id/tvName" />
+                    app:layout_constraintStart_toStartOf="@id/tvHistoryName"
+                    app:layout_constraintTop_toBottomOf="@id/tvHistoryName" />
 
                 <TextView
-                    app:layout_constraintTop_toTopOf="@id/tvName"
+                    app:layout_constraintTop_toTopOf="@id/tvHistoryName"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#27B1A3"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/open_sans"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
                     android:textSize="14sp"
-                    android:text="11 am - 5 pm"
-                    android:layout_marginEnd="16dp" />
+                    android:text="@{date}"
+                    android:layout_marginEnd="16dp"
+                    app:drawableTint="@color/black"
+                    app:drawableLeftCompat="@drawable/ic_date" />
 
-                <TextView
-                    android:id="@+id/tvLocation"
+                <LinearLayout
+                    android:id="@+id/llDivider"
                     app:layout_constraintTop_toBottomOf="@id/cvDoctorImage"
                     app:layout_constraintStart_toStartOf="@id/cvDoctorImage"
                     android:layout_marginTop="16dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#CADCDA"
                     android:fontFamily="@font/open_sans"
-                    android:layout_height="wrap_content"
-                    tools:text="Tambaram, Chennai"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/ic_location"
-                    android:drawablePadding="6dp" />
+                    android:layout_height="2dp"
+                    android:orientation="horizontal" />
 
                 <TextView
-                    android:id="@+id/tvExperience"
-                    app:layout_constraintTop_toBottomOf="@id/tvLocation"
-                    app:layout_constraintStart_toStartOf="@id/tvLocation"
+                    android:id="@+id/_tvStatus"
+                    app:layout_constraintTop_toBottomOf="@id/llDivider"
+                    app:layout_constraintStart_toStartOf="@id/llDivider"
                     android:layout_marginTop="16dp"
                     android:layout_width="wrap_content"
                     android:fontFamily="@font/open_sans"
                     android:layout_height="wrap_content"
-                    tools:text="5 - 7 Years"
+                    tools:text="Prescription Status"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableStart="@drawable/ic_experience"
                     android:drawablePadding="6dp" />
 
 
                 <TextView
                     android:id="@+id/tvDistance"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvExperience"
+                    app:layout_constraintTop_toTopOf="@id/_tvStatus"
+
                     android:layout_width="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/open_sans"
                     android:layout_height="wrap_content"
-                    tools:text="2.5 Km away"
-                    android:textColor="@color/black"
+                    tools:text="@{status}"
+                    android:textColor="#27B1A3"
                     android:textSize="12sp" />
 
 
