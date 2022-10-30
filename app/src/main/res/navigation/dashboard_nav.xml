@@ -40,5 +40,10 @@
         android:id="@+id/aiDiagnosis"
         android:name="in.lj.lifecare.ui.fragments.AiDiagnosis"
         android:label="fragment_ai_diagnosis"
-        tools:layout="@layout/fragment_ai_diagnosis" />
+        tools:layout="@layout/fragment_ai_diagnosis" >
+        <action
+            android:id="@+id/action_aiDiagnosis_to_doctorsList"
+            app:destination="@id/doctorsList"
+            app:popUpTo="@id/home2" />
+    </fragment>
 </navigation>

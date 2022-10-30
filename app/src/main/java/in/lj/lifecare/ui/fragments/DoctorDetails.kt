@@ -2,6 +2,7 @@ package `in`.lj.lifecare.ui.fragments
 
 import `in`.lj.lifecare.DateBindingModel_
 import `in`.lj.lifecare.R
+import `in`.lj.lifecare.data.Booking
 import `in`.lj.lifecare.data.Doctor
 import `in`.lj.lifecare.databinding.FragmentDoctorDetailsBinding
 import `in`.lj.lifecare.helper.BaseBottomSheet
@@ -57,7 +58,19 @@ class DoctorDetails(
             dialog?.dismiss()
         }
         btnBook.setOnClickListener {
-            val confirmationDialog = ConfirmationDialog()
+            val lis = getNextWeek()
+            if(selected == null)
+                return@setOnClickListener
+            val _selected = lis[selected!!]
+            val dd = _selected.split(" ")
+
+            val booking = Booking(
+                doctorName = "Dr. " + doctor.name,
+                doctorDept = doctor.specialization,
+                day = dd[0].substring(0,3),
+                date = dd[1].substring(0,2)
+            )
+            val confirmationDialog = ConfirmationDialog(booking)
             confirmationDialog.show(requireActivity().supportFragmentManager,ConfirmationDialog.TAG)
         }
 

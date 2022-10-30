@@ -65,6 +65,7 @@
         android:textSize="22sp"/>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tvUpcoming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,6 +79,7 @@
 
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/ivAppointments"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -88,6 +90,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvUpcoming"/>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tvTotalAppointments"
             app:layout_constraintStart_toStartOf="@id/ivAppointments"
             app:layout_constraintEnd_toEndOf="@id/ivAppointments"
@@ -100,10 +103,35 @@
             android:textColor="#1CA3A4"/>
 
 
+
+
+
+            <com.smarteist.autoimageslider.SliderView
+                app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="#F5f5f5"
+                app:sliderScrollTimeInSec="1"
+                app:sliderStartAutoCycle="true" />
+
+
     <include
+        android:visibility="invisible"
         android:id="@+id/cvUpcoming"
         app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
-        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/imageSlider"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_marginTop="8dp"
         layout="@layout/item_upcoming_card"/>

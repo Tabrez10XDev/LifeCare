@@ -2,6 +2,7 @@ package `in`.lj.lifecare.ui.fragments
 
 import `in`.lj.lifecare.R
 import `in`.lj.lifecare.api.RetrofitInstance
+import `in`.lj.lifecare.data.Dept
 import `in`.lj.lifecare.data.Features
 import android.os.Bundle
 import android.os.Handler
@@ -13,8 +14,10 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.ai_suggestion_card.*
 import kotlinx.android.synthetic.main.fragment_ai_diagnosis.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -53,6 +56,18 @@ class AiDiagnosis : Fragment() {
             addChipToGroup(adapterView.getItemAtPosition(i).toString())
             etSearch.text.clear()
         }
+
+        btnSearch.setOnClickListener {
+            val item  = Dept(
+                "physician",
+                R.drawable.physician
+            )
+            val bundle = Bundle().apply {
+                putSerializable("Category",item)
+            }
+            findNavController().navigate(R.id.action_aiDiagnosis_to_doctorsList, bundle)
+        }
+
         btnDiagnose.setOnClickListener {
             startLoadingAnimation()
             Handler(Looper.getMainLooper()).postDelayed(
@@ -106,7 +121,6 @@ class AiDiagnosis : Fragment() {
     }
 
     private fun startLoading(){
-
         innerCL.visibility = View.INVISIBLE
         tvDiagnosis.visibility = View.VISIBLE
         tvLoading.visibility = View.VISIBLE
@@ -121,18 +135,17 @@ class AiDiagnosis : Fragment() {
         animationView2.visibility = View.VISIBLE
         animationView2.alpha = 1f
         animationView2.playAnimation()
-
     }
 
     private fun stopLoadingAnimation(){
         tvSuggestions.visibility = View.VISIBLE
         tvPossibility.visibility = View.VISIBLE
         cvPossibility.visibility = View.VISIBLE
+        aiSuggestionsCard.visibility = View.VISIBLE
         btnDiagnose.visibility = View.INVISIBLE
         animationView2.visibility = View.INVISIBLE
         animationView2.alpha = 0f
         animationView2.pauseAnimation()
-
     }
 
     private fun stopLoading(){
