@@ -12,7 +12,6 @@ import `in`.lj.lifecare.adapters.SliderAdapter
 import `in`.lj.lifecare.data.Booking
 import `in`.lj.lifecare.data.Doctor
 import `in`.lj.lifecare.data.User
-import `in`.lj.lifecare.databinding.ItemDeptBinding
 import `in`.lj.lifecare.helper.Constants.DEPARTMENTS
 import android.util.Log
 import android.widget.Toast
@@ -46,6 +45,7 @@ class Home : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
         auth.uid?.let { getUser(it) }
+        startSlider()
         rvHomeController()
         btnTest.setOnClickListener {
             findNavController().navigate(R.id.action_home2_to_aiDiagnosis)
@@ -84,10 +84,12 @@ class Home : Fragment() {
         if(appointments.size == 0){
             startSlider()
             return
+        }else{
+            stopSlider(appointments.size)
+            updateUpcoming(appointments[0])
         }
 
-        stopSlider(appointments.size)
-        updateUpcoming(appointments[0])
+
 
     }
 
