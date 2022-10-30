@@ -52,8 +52,12 @@ class DoctorsList : Fragment() {
                 doctorsCard {
                     id(index)
                     onClickContent{ _ ->
-                        val doctorDetails = DoctorDetails(doctor)
-                        doctorDetails.show(requireActivity().supportFragmentManager, DoctorDetails.TAG)
+                        val bundle = Bundle().apply {
+                            putSerializable("Doctor",doctor)
+                        }
+                        findNavController().navigate(R.id.action_doctorsList_to_doctorDetails, bundle)
+//                        val doctorDetails = DoctorDetails(doctor)
+//                        doctorDetails.show(requireActivity().supportFragmentManager, DoctorDetails.TAG)
                     }
                     name("Dr. " + doctor.name)
                     specialization(doctor.specialization)

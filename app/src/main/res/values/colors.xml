@@ -14,4 +14,6 @@
     <color name="availability_red">#EB4F56</color>
     <color name="date_unselected">#ECF4F4</color>
     <color name="date_selected">#1AA0A4</color>
+    <color name="history_date_selected">#22ABA4</color>
+    <color name="history_date_unselected">#78C7BF</color>
 </resources>

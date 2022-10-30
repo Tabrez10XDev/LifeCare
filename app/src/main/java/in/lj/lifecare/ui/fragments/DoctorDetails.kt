@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.airbnb.epoxy.CarouselModel_
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -26,9 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class DoctorDetails(
-    val doctor: Doctor
-)
+class DoctorDetails()
     : BaseBottomSheet<FragmentDoctorDetailsBinding>(R.layout.fragment_doctor_details),
     BottomSheetLevelInterface {
 
@@ -47,6 +46,8 @@ class DoctorDetails(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var args: DoctorDetailsArgs = DoctorDetailsArgs.fromBundle(this.requireArguments())
+        var doctor = args.doctor
         val imgUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${doctor.geoTag[0]},${doctor.geoTag[1]},16,0,0/400x400?access_token=pk.eyJ1IjoibG93anVua2llIiwiYSI6ImNsMmhlajNuZDBjY3gzY256eGt0ZGpncTIifQ.wPCLsXXPdlP2dY365C-x7A"
 
         Glide
@@ -68,10 +69,17 @@ class DoctorDetails(
                 doctorName = "Dr. " + doctor.name,
                 doctorDept = doctor.specialization,
                 day = dd[0].substring(0,3),
-                date = dd[1].substring(0,2)
+                date = dd[1].substring(0,2),
+                visitingHours = doctor.visitingHours,
+                ddmmyy = dd[1]
             )
-            val confirmationDialog = ConfirmationDialog(booking)
-            confirmationDialog.show(requireActivity().supportFragmentManager,ConfirmationDialog.TAG)
+            val bundle = Bundle().apply {
+                putSerializable("Booking",booking)
+            }
+            findNavController().navigate(R.id.action_doctorDetails_to_confirmationDialog2,bundle)
+        //    val confirmationDialog = ConfirmationDialog(booking)
+        //    confirmationDialog.show(requireActivity().supportFragmentManager,ConfirmationDialog.TAG)
+
         }
 
         tvDoctorName.text = "Dr. " + doctor.name

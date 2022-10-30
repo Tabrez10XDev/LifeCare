@@ -107,6 +107,7 @@
 
 
             <com.smarteist.autoimageslider.SliderView
+                android:visibility="invisible"
                 app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
                 android:id="@+id/imageSlider"
                 android:layout_width="match_parent"
