@@ -43,6 +43,8 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
+Project can only be run in an emulator at
+
 
 Contributors:
 * Tabrez Mohammed
