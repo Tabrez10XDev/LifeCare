@@ -80,7 +80,7 @@
 
                 <TextView
                     android:id="@id/tvName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-8dp"
@@ -88,6 +88,8 @@
                     android:text="@{name}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:ellipsize="end"
+                    app:layout_constraintEnd_toStartOf="@id/tvAvailable"
                     app:layout_constraintBottom_toBottomOf="@id/cvDoctorImage"
                     app:layout_constraintStart_toEndOf="@id/cvDoctorImage"
                     app:layout_constraintTop_toTopOf="@id/cvDoctorImage" />

@@ -43,7 +43,6 @@ class DashboardActivity : AppCompatActivity() {
         nav_view.setItemSelected(R.id.home2)
         findNavController(R.id.dashboardFragment).popBackStack(R.id.dashboard_nav, true)
         findNavController(R.id.dashboardFragment).navigate(R.id.home2)
-        Toast.makeText(applicationContext, "Press again to exit", Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }

@@ -34,6 +34,24 @@ class Home : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
         auth.uid?.let { getUser(it) }
+        rvHomeController()
+        btnTest.setOnClickListener {
+            findNavController().navigate(R.id.action_home2_to_aiDiagnosis)
+        }
+    }
+
+
+    private fun getUser(uid: String){
+        var user: User ?= null
+        fireStore.collection("users").document(uid).get()
+            .addOnSuccessListener {
+                user = it.toObject(User::class.java)
+                tvName.text = "Welcome, ${user?.name}"
+
+            }
+    }
+
+    private fun rvHomeController(){
         rvHome.withModels {
             val deptModels = mutableListOf<DeptBindingModel_>()
             DEPARTMENTS.forEachIndexed { index, item ->
@@ -57,18 +75,6 @@ class Home : Fragment() {
                 .models(deptModels)
                 .addTo(this);
         }
-
-    }
-
-
-    private fun getUser(uid: String){
-        var user: User ?= null
-        fireStore.collection("users").document(uid).get()
-            .addOnSuccessListener {
-                user = it.toObject(User::class.java)
-                tvName.text = "Welcome, ${user?.name}"
-
-            }
     }
 
 

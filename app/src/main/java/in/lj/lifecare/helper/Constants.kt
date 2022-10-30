@@ -5,7 +5,7 @@ import `in`.lj.lifecare.data.Dept
 
 object Constants {
     val DEPARTMENTS = listOf<Dept>(
-        Dept("Gynecology", R.drawable.gynocology),
+        Dept("Gynecology", R.drawable.gynecology),
         Dept("Dermatology",R.drawable.dermatology),
         Dept("Physician",R.drawable.physician),
         Dept("Sexology",R.drawable.sexology),

@@ -1,22 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/motionLayout"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.AiDiagnosis">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/animationView"
-        android:visibility="visible"
-        app:lottie_rawRes="@raw/ai_intro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/innerCL"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/aiDiagnosisCard"
+            layout="@layout/ai_diagnosis_card"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:ems="10"
+            android:textSize="16sp"
+            android:hint="Type your symptoms"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="6dp"
+            android:inputType="textAutoCorrect"
+            android:maxLines="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aiDiagnosisCard"
+            android:background="@drawable/search_bg"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginVertical="8dp"
+            android:textColorHint="#AFAFAF"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="0dp"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toBottomOf="@id/etSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="48dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/ai_loading" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/tvPossibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/chip_group"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="16dp"
+            android:text="Based on your symptoms it is likely you have"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvPossibility"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:visibility="invisible"
+            android:id="@+id/cvPossibility">
+
+            <TextView
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="12dp"
+                android:id="@+id/tvPossibilityInner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#22ABA4"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textSize="18sp"/>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/cvPossibility"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="16dp"
+            android:id="@+id/tvSuggestions"
+            android:text="Suggestions for you"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDiagnose"
+            android:layout_width="wrap_content"
+            android:paddingHorizontal="45dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="64dp"
+            android:elevation="8dp"
+            android:text="Diagnose"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/ai_btn_bg"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/tvDiagnosis"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="AI Diagnosis"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/animationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/ai_intro5" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/tvLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Loading Virtual Health check-up..."
+        android:textColor="#5F5F5F"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/animationView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
